@@ -14,6 +14,9 @@ public abstract class Payment implements Refundable {
     private double amountPaid;
     private double remainingRefundable;
 
+    public Payment() {
+        this.shoppingItems = new ArrayList<>();
+    }
 
     public void setAmountPaid(double amountPaid) {
         this.amountPaid = amountPaid;
@@ -25,10 +28,6 @@ public abstract class Payment implements Refundable {
 
     public String getReceiptNumber() {
         return receiptNumber;
-    }
-
-    public Payment() {
-        shoppingItems = new ArrayList<>();
     }
 
     public void addItem(ShoppingItem item){
@@ -48,7 +47,10 @@ public abstract class Payment implements Refundable {
         return amountPaid;
     }
 
-    public abstract String processPayment(double amount);
+    public String processPayment(double amount) {
+        setAmountPaid(getAmountPaid() + amount);
+        return generateReceiptNumber();
+    }
 
     protected String generateReceiptNumber(){
         receiptNumber = UUID.randomUUID().toString();

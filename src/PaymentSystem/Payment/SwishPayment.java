@@ -10,11 +10,12 @@ public class SwishPayment extends Payment {
     @Override
     public String processPayment(double amount) {
         System.out.println("Processing swish payment. Amount:" + amount);
-        return generateReceiptNumber();
+        return super.processPayment(amount);
     }
 
     @Override
     public void refund(double amount) {
+        super.refund(amount);
         System.out.println("Refunding swish payment. Amount:" + amount);
     }
 }

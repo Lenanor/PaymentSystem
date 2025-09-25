@@ -5,11 +5,12 @@ public class InvoicePayment extends Payment {
     @Override
     public String processPayment(double amount) {
         System.out.println("Processing invoice payment. Amount:" + amount);
-        return generateReceiptNumber();
+        return super.processPayment(amount);
     }
 
     @Override
     public void refund(double amount) {
         System.out.println("Refunding invoice payment. Amount:" + amount);
+        super.refund(amount);
     }
 }
