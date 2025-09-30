@@ -13,6 +13,18 @@ public class CardPayment extends Payment{
 
     @Override
     public String processPayment(double amount) {
+        // Build receipt
+        Receipt receipt = new Receipt.Builder()
+                .paymentMethod("CARD")
+                .receiptNumber(getReceiptNumber())
+                .cardNumber(this.cardNumber)
+                .items(getShoppingItems())
+                .total(getTotalSum())
+                .formatter(new CardReceiptFormatter())
+                .build();
+
+        System.out.println(receipt);
+
         System.out.println("Processing card payment. Amount:" + amount);
         return super.processPayment(amount);
     }
