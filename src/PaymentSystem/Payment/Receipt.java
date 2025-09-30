@@ -1,6 +1,7 @@
 package PaymentSystem.Payment;
 
-import PaymentSystem.ShoppingItem;
+import PaymentSystem.Catalog.ShoppingItem;
+
 import java.util.List;
 
 public class Receipt {

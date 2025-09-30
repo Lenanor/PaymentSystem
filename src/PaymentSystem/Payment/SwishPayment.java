@@ -1,7 +1,5 @@
 package PaymentSystem.Payment;
 
-import PaymentSystem.ShoppingItem;
-
 import java.util.ArrayList;
 import java.util.List;
 
