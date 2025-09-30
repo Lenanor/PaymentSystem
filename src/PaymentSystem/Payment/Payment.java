@@ -1,7 +1,7 @@
 package PaymentSystem.Payment;
 
 import PaymentSystem.Refundable;
-import PaymentSystem.ShoppingItem;
+import PaymentSystem.Catalog.ShoppingItem;
 
 import java.util.ArrayList;
 import java.util.List;

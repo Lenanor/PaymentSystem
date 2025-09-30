@@ -1,5 +1,8 @@
 package PaymentSystem;
 
+import PaymentSystem.Catalog.Catalog;
+import PaymentSystem.Catalog.FoodItem;
+import PaymentSystem.Catalog.ShoppingItem;
 import PaymentSystem.Payment.CardPayment;
 import PaymentSystem.Payment.InvoicePayment;
 import PaymentSystem.Payment.Payment;
@@ -32,5 +35,11 @@ public class Cashier {
         }
 
         payments.get(0).refund(50);
+
+        Catalog catalog = new Catalog();
+
+        catalog.printCatalog();
+        catalog.orderShoppingItem(1, 100);
+        catalog.printCatalog();
     }
 }
