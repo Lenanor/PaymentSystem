@@ -25,7 +25,7 @@ public class Cashier {
         payments.get(0).addItem(new ShoppingItem("Kaffe", 40));
 
         payments.add(new SwishPayment("123"));
-        payments.add(new InvoicePayment());
+        payments.add(new InvoicePayment("Viola Bengtsson"));
 
         for (Payment payment : payments){
             processedPayments.put(payment.processPayment(payment.getTotalSum()), payment);

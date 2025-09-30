@@ -3,10 +3,14 @@ package PaymentSystem.Payment;
 public class InvoicePayment extends Payment {
     private String client;
     private String invoiceNumber;
+    private String terms;
 
-    public InvoicePayment() {
-        this.client = "Kalle Andersson";
-        this.invoiceNumber = "F-111";
+    private static int invoiceCounter = 111;
+
+    public InvoicePayment(String fullName) {
+        this.client = fullName;
+        this.invoiceNumber = "F-" + invoiceCounter++;
+        this.terms = "Within 30 days";
     }
 
     @Override
@@ -14,7 +18,7 @@ public class InvoicePayment extends Payment {
         // Build receipt
         Receipt receipt = new Receipt.Builder()
                 .paymentMethod("INVOICE")
-                .terms("Within 30 days")
+                .terms(this.terms)
                 .invoiceNumber(this.invoiceNumber)
                 .phoneNumber(this.client)
                 .items(getShoppingItems())

@@ -5,12 +5,12 @@ import java.util.List;
 
 public class Receipt {
     private String paymentMethod;
-    private String receiptNumber;
-    private String cardNumber;
-    private String phoneNumber;
-    private String invoiceNumber; // add to InvoicePayment
-    private String terms; // add to InvoicePayment
-    private String client; // add to InvoicePayment
+    private String receiptNumber; // Card, Swish
+    private String cardNumber; // Card
+    private String phoneNumber; // Swish
+    private String invoiceNumber; // InvoicePayment
+    private String terms; // InvoicePayment
+    private String client; // InvoicePayment
     private List<ShoppingItem> items;
     private double total;
     private ReceiptFormatter formatter;
@@ -51,6 +51,8 @@ public class Receipt {
     public String getPaymentMethod() {
         return paymentMethod;
     }
+
+    public String getTerms() { return terms; }
 
     public String shoppingItemsToString() {
         if(items.isEmpty()) return "No items\n";

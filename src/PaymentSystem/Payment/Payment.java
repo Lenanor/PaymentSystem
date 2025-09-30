@@ -61,10 +61,10 @@ public abstract class Payment implements Refundable {
         return receiptNumber;
     }
 
-//    protected String generateReceiptNumber(){
-//        receiptNumber = UUID.randomUUID().toString();
-//        return receiptNumber;
-//    }
+    protected String generateReceiptNumber(){
+        receiptNumber = UUID.randomUUID().toString();
+        return receiptNumber;
+    }
 
     @Override
     public void refund(double amount) {
