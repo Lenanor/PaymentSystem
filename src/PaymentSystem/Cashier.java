@@ -19,13 +19,13 @@ public class Cashier {
         payments = new ArrayList<>();
         processedPayments = new HashMap<>();
 
-        payments.add(new CardPayment("", ""));
+        payments.add(new CardPayment("123456789", ""));
         payments.get(0).addItem(new ShoppingItem("Bullar", 35));
         payments.get(0).addItem(new ShoppingItem("Kakor", 25));
         payments.get(0).addItem(new ShoppingItem("Kaffe", 40));
 
         payments.add(new SwishPayment("123"));
-        payments.add(new InvoicePayment());
+        payments.add(new InvoicePayment("Viola Bengtsson"));
 
         for (Payment payment : payments){
             processedPayments.put(payment.processPayment(payment.getTotalSum()), payment);

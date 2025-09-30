@@ -1,5 +1,10 @@
 package PaymentSystem.Payment;
 
+import PaymentSystem.ShoppingItem;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class SwishPayment extends Payment {
     private String phoneNumber;
 
@@ -9,6 +14,18 @@ public class SwishPayment extends Payment {
 
     @Override
     public String processPayment(double amount) {
+        // Build receipt
+        Receipt receipt = new Receipt.Builder()
+                .paymentMethod("SWISH")
+                .receiptNumber(getReceiptNumber())
+                .phoneNumber(this.phoneNumber)
+                .items(getShoppingItems())
+                .total(getTotalSum())
+                .formatter(new SwishReceiptFormatter())
+                .build();
+
+        System.out.println(receipt);
+
         System.out.println("Processing swish payment. Amount:" + amount);
         return super.processPayment(amount);
     }
