@@ -38,6 +38,6 @@ public class ShoppingItem
     {
         return itemId +
                 ". " + name +
-                ", Price: " + price;
+                ", Pris: " + price;
     }
 }

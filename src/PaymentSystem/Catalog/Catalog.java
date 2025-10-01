@@ -6,7 +6,7 @@ import java.util.TreeMap;
 
 public class Catalog
 {
-    private static int idCounter = 0;
+    private int idCounter = 0;
     private Map<Integer, ShoppingItem> items;
     private Map<Integer, Integer> stock;
 
@@ -24,28 +24,42 @@ public class Catalog
             return false;
         }
 
-        item.setItemId(++idCounter);
-        items.put(idCounter, item);
-        stock.put(idCounter, amount);
+        int id = item.getItemId();
+
+        if (id == -1)
+        {
+            id = ++idCounter;
+            item.setItemId(id);
+        }
+
+        if (stock.get(id) != null)
+        {
+            amount += stock.get(id);
+        }
+
+        items.put(id, item);
+        stock.put(id, amount);
         return true;
     }
 
-    public boolean orderShoppingItem(int itemId, int amount)
+    public ShoppingItem orderShoppingItem(int itemId, int amount)
     {
-        if (stock.get(itemId) == null)
+        ShoppingItem shoppingItem = items.get(itemId);
+
+        if (shoppingItem == null)
         {
-            return false;
+            return null;
         }
 
         int newStock = stock.get(itemId) - amount;
 
         if (newStock < 0)
         {
-            return false;
+            return null;
         }
 
         stock.put(itemId, newStock);
-        return true;
+        return shoppingItem;
     }
 
     public void printCatalog()
@@ -56,18 +70,18 @@ public class Catalog
 
             if (item instanceof FoodItem foodItem)
             {
-                System.out.print(", (Food Expiration date " + foodItem.getExpirationDate() + ")");
+                System.out.print(", (Mat utgångsdatum " + foodItem.getExpirationDate() + ")");
             }
             else if (item instanceof ElectricItem electricItem)
             {
-                System.out.print(", (Electric Energy Class " + electricItem.getEnergyClass() + ")");
+                System.out.print(", (Elektronik energiklass " + electricItem.getEnergyClass() + ")");
             }
             else if (item instanceof ClothingItem clothingItem)
             {
-                System.out.print(", (Clothing Size " + clothingItem.getSize() + ")");
+                System.out.print(", (Kläder storlek " + clothingItem.getSize() + ")");
             }
 
-            System.out.println(", Stock: " + stock.get(item.getItemId()));
+            System.out.println(", Antal: " + stock.get(item.getItemId()));
         }
 
         System.out.println();
