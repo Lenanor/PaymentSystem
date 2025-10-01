@@ -17,9 +17,6 @@ public abstract class Payment implements Refundable {
     public Payment() {
         this.shoppingItems = new ArrayList<>();
         this.receiptNumber = UUID.randomUUID().toString();
-
-        shoppingItems.add(new ShoppingItem("Milk", 12.5));
-        shoppingItems.add(new ShoppingItem("Bread", 3225.0));
     }
 
     public void setAmountPaid(double amountPaid) {
