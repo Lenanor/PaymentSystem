@@ -1,4 +1,5 @@
 package PaymentSystem.shoppingCart;
+import PaymentSystem.Catalog.ShoppingItem;
 
 import java.util.*;
 
@@ -16,7 +17,7 @@ class OrderManager {
     }
 
     // Update
-    public void updateOrder(int orderId, List<Item> updatedItems) {
+    public void updateOrder(int orderId, List<ShoppingItem> updatedItems) {
         Order order = orders.get(orderId);
         if (order != null) {
             order.setItems(updatedItems);

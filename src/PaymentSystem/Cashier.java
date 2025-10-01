@@ -7,20 +7,24 @@ import PaymentSystem.Payment.CardPayment;
 import PaymentSystem.Payment.InvoicePayment;
 import PaymentSystem.Payment.Payment;
 import PaymentSystem.Payment.SwishPayment;
+import PaymentSystem.shoppingCart.ShoppingCart;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Cashier {
     private List<Payment> payments;
     private Map<String, Payment> processedPayments;
+    private Scanner scanner;
+    private Catalog catalog;
+    private ShoppingCart shoppingCart;
 
     public Cashier() {
 
         payments = new ArrayList<>();
         processedPayments = new HashMap<>();
+        scanner = new Scanner(System.in);
+        catalog = new Catalog();
+        shoppingCart = new ShoppingCart();
 
         payments.add(new CardPayment("123456789", ""));
         payments.get(0).addItem(new ShoppingItem("Bullar", 35));
