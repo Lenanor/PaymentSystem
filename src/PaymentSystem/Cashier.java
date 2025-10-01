@@ -9,10 +9,7 @@ import PaymentSystem.Payment.Payment;
 import PaymentSystem.Payment.SwishPayment;
 import PaymentSystem.shoppingCart.ShoppingCart;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Cashier {
     private List<Payment> payments;
