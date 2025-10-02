@@ -12,8 +12,21 @@ public class ShoppingCart {
         cartItems.add(item);
     }
 
-    public void removeItem(ShoppingItem item) {
-        cartItems.remove(item);
+    public ShoppingItem removeItem(int id)
+    {
+        ShoppingItem removedItem = null;
+
+        for (ShoppingItem item : cartItems)
+        {
+            if (item.getItemId() == id)
+            {
+                removedItem = item;
+                cartItems.remove(item);
+                break;
+            }
+        }
+
+        return removedItem;
     }
 
     public double calculateTotal() {
@@ -39,6 +52,6 @@ public class ShoppingCart {
 
     @Override
     public String toString() {
-        return "Cart: " + cartItems.toString();
+        return "Kundvagn: " + cartItems.toString();
     }
 }

@@ -42,8 +42,12 @@ public class Cashier {
     }
 
     private void removeProduct() {
-        System.out.println("--- Skriv in id på ");
-        //shoppingCart.removeItem()
+        System.out.println("--- Skriv in id på varan ---");
+        int itemId = scanner.nextInt();
+
+        ShoppingItem item = shoppingCart.removeItem(itemId);
+        catalog.addShoppingItem(item, 1);
+        System.out.println(shoppingCart);
     }
 
     private void pay() {
@@ -122,6 +126,7 @@ public class Cashier {
 //        int
 
         shoppingCart.addItem(catalog.orderShoppingItem(itemId, 1));
+        System.out.println(shoppingCart);
     }
 
     private void showCatalog() {

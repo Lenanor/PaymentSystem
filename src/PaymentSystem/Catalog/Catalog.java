@@ -24,6 +24,11 @@ public class Catalog
             return false;
         }
 
+        if (item == null)
+        {
+            return false;
+        }
+
         int id = item.getItemId();
 
         if (id == -1)
