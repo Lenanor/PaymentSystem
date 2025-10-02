@@ -10,7 +10,7 @@ public class MenuSystem {
     private MenuSystem() {
     }
 
-    public static void displayMenu(Scanner scanner, String title, ArrayList<MenuItem> menuItems) {
+    public static void displayMenu(Scanner scanner, String title, ArrayList<MenuItem> menuItems, boolean infinite) {
 
         int choice;
 
@@ -37,7 +37,12 @@ public class MenuSystem {
             MenuItem selected = getMenuItem(menuItems, choice);
 
             if (selected != null)
+            {
                 selected.getAction().run();
+                if (!infinite){
+                    break;
+                }
+            }
             else
                 System.out.println("Wrong input choice");
         }

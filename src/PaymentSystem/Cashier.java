@@ -44,7 +44,7 @@ public class Cashier {
                 new MenuItem("2. Lägg till vara", 2, this::addProduct),
                 new MenuItem("3. Ta bort vara", 3, this::addProduct),
                 new MenuItem("4. Betala", 4, this::pay)
-        )));
+        )), true);
     }
 
     private void pay() {
@@ -60,7 +60,7 @@ public class Cashier {
                 new MenuItem("1. Kort", 1, this::handleCardPayment),
                 new MenuItem("2. Swish", 2, this::handleSwishPayment),
                 new MenuItem("3. Faktura", 3, this::handleInvoicePayment)
-        )));
+        )), false);
     }
 
     private void handleInvoicePayment() {
