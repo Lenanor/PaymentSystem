@@ -1,5 +1,7 @@
 package PaymentSystem.shoppingCart;
 
+import PaymentSystem.Catalog.ShoppingItem;
+
 import java.util.*;
 
 // Order class
@@ -7,25 +9,25 @@ class Order {
     private static int nextOrderId = 1;
 
     private int orderId;
-    private List<Item> items;
+    private List<ShoppingItem> ShoppingItems;
     private Date orderDate;
 
-    public Order(List<Item> items) {
+    public Order(List<ShoppingItem> ShoppingItems) {
         this.orderId = nextOrderId++;
-        this.items = new ArrayList<>(items);
+        this.ShoppingItems = new ArrayList<>(ShoppingItems);
         this.orderDate = new Date();
     }
 
     public int getOrderId() { return orderId; }
-    public List<Item> getItems() { return items; }
+    public List<ShoppingItem> getItems() { return ShoppingItems; }
     public Date getOrderDate() { return orderDate; }
 
-    public void setItems(List<Item> newItems) {
-        this.items = newItems;
+    public void setItems(List<ShoppingItem> newItems) {
+        this.ShoppingItems = newItems;
     }
 
     @Override
     public String toString() {
-        return "Order #" + orderId + " on " + orderDate + "\nItems: " + items;
+        return "Order #" + orderId + " on " + orderDate + "\nItems: " + ShoppingItems;
     }
 }
