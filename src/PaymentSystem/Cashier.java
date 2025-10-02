@@ -72,7 +72,7 @@ public class Cashier {
 
         Receipt receipt = invoicePayment.processPayment();
 
-        payments.add(invoicePayment);
+        // payments.add(invoicePayment);
 
         System.out.println(receipt);
     }

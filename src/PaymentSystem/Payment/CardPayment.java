@@ -20,6 +20,7 @@ public class CardPayment extends Payment{
                 .cardNumber(this.cardNumber)
                 .items(getShoppingItems())
                 .total(getTotalSum())
+                .discountSum(getDiscountSum())
                 .formatter(new CardReceiptFormatter())
                 .build();
     }

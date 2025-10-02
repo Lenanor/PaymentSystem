@@ -15,9 +15,14 @@ public abstract class Payment implements Refundable {
     private double amountPaid;
     private double remainingRefundable;
     private DiscountStrategy discount;
+    private double discountSum;
 
     public DiscountStrategy getDiscount() {
         return discount;
+    }
+
+    public double getDiscountSum() {
+        return discountSum;
     }
 
     public void setDiscount(DiscountStrategy discount) {
@@ -61,7 +66,9 @@ public abstract class Payment implements Refundable {
         }
 
         if (discount != null){
+            double sum = totalSum;
             totalSum = discount.applyDiscount(totalSum);
+            this.discountSum = sum - totalSum;
         }
         return totalSum;
     }
