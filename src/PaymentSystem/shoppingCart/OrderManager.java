@@ -3,7 +3,7 @@ import PaymentSystem.Catalog.ShoppingItem;
 
 import java.util.*;
 
-class OrderManager {
+public class OrderManager {
     private Map<Integer, Order> orders = new HashMap<>();
 
     // Create

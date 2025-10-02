@@ -2,6 +2,7 @@ package PaymentSystem.Payment;
 
 import PaymentSystem.Refundable;
 import PaymentSystem.Catalog.ShoppingItem;
+import PaymentSystem.shoppingCart.Order;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,12 +11,28 @@ import java.util.UUID;
 public abstract class Payment implements Refundable {
 
     private String receiptNumber;
-    private final List<ShoppingItem> shoppingItems;
+    private Order order;
     private double amountPaid;
     private double remainingRefundable;
+    private DiscountStrategy discount;
+
+    public DiscountStrategy getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(DiscountStrategy discount) {
+        this.discount = discount;
+    }
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
+    }
 
     public Payment() {
-        this.shoppingItems = new ArrayList<>();
         this.receiptNumber = UUID.randomUUID().toString();
     }
 
@@ -31,32 +48,33 @@ public abstract class Payment implements Refundable {
         return receiptNumber;
     }
 
-    public void addItem(ShoppingItem item){
-        shoppingItems.add(item);
-    }
 
     public double getTotalSum(){
         double totalSum = 0;
-        for (ShoppingItem shoppingItem : shoppingItems){
+
+        if (order == null){
+            return 0;
+        }
+
+        for (ShoppingItem  shoppingItem : order.getItems()){
             totalSum += shoppingItem.getPrice();
         }
 
+        if (discount != null){
+            totalSum = discount.applyDiscount(totalSum);
+        }
         return totalSum;
     }
 
     public List<ShoppingItem> getShoppingItems() {
-        return shoppingItems;
+        return order.getItems();
     }
 
     public double getAmountPaid(){
         return amountPaid;
     }
 
-    public String processPayment(double amount) {
-        setAmountPaid(getAmountPaid() + amount);
-        //receiptNumber = UUID.randomUUID().toString();
-        return receiptNumber;
-    }
+    public abstract Receipt processPayment();
 
     protected String generateReceiptNumber(){
         receiptNumber = UUID.randomUUID().toString();

@@ -11,9 +11,10 @@ public class SwishPayment extends Payment {
     }
 
     @Override
-    public String processPayment(double amount) {
+    public Receipt processPayment() {
         // Build receipt
-        Receipt receipt = new Receipt.Builder()
+
+        return new Receipt.Builder()
                 .paymentMethod("SWISH")
                 .receiptNumber(getReceiptNumber())
                 .phoneNumber(this.phoneNumber)
@@ -21,11 +22,6 @@ public class SwishPayment extends Payment {
                 .total(getTotalSum())
                 .formatter(new SwishReceiptFormatter())
                 .build();
-
-        System.out.println(receipt);
-
-        System.out.println("Processing swish payment. Amount:" + amount);
-        return super.processPayment(amount);
     }
 
     @Override

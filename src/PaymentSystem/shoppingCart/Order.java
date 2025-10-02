@@ -5,7 +5,7 @@ import PaymentSystem.Catalog.ShoppingItem;
 import java.util.*;
 
 // Order class
-class Order {
+public class Order {
     private static int nextOrderId = 1;
 
     private int orderId;
