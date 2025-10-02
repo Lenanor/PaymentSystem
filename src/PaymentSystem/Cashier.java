@@ -5,18 +5,12 @@ import PaymentSystem.MenuSystem.MenuItem;
 import PaymentSystem.MenuSystem.MenuSystem;
 import PaymentSystem.Catalog.Catalog;
 import PaymentSystem.Catalog.FoodItem;
-import PaymentSystem.Catalog.ShoppingItem;
-import PaymentSystem.Payment.CardPayment;
-import PaymentSystem.Payment.InvoicePayment;
-import PaymentSystem.Payment.Payment;
-import PaymentSystem.Payment.SwishPayment;
+import PaymentSystem.Payment.*;
+import PaymentSystem.shoppingCart.Order;
 import PaymentSystem.shoppingCart.ShoppingCart;
 import java.util.*;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
 
 
 public class Cashier {
@@ -42,9 +36,14 @@ public class Cashier {
         MenuSystem.displayMenu(scanner, "--- Meny ---", new ArrayList<>(List.of(
                 new MenuItem("1. Visa katalogen", 1, this::showCatalog),
                 new MenuItem("2. Lägg till vara", 2, this::addProduct),
-                new MenuItem("3. Ta bort vara", 3, this::addProduct),
+                new MenuItem("3. Ta bort vara", 3, this::removeProduct),
                 new MenuItem("4. Betala", 4, this::pay)
         )));
+    }
+
+    private void removeProduct() {
+        System.out.println("--- Skriv in id på ");
+        //shoppingCart.removeItem()
     }
 
     private void pay() {
@@ -69,22 +68,19 @@ public class Cashier {
 
         InvoicePayment invoicePayment = new InvoicePayment(fullName);
 
-        addProductsToPayment(invoicePayment);
+        makeOrderToPayment(invoicePayment);
 
-        String receipt = invoicePayment.processPayment(100);
+        Receipt receipt = invoicePayment.processPayment();
 
         payments.add(invoicePayment);
-
 
         System.out.println(receipt);
     }
 
-    private void addProductsToPayment(Payment payment) {
-
-        payment.addItem(new ClothingItem("Kofta", 200, "m"));
-        payment.addItem(new ClothingItem("Sockar", 60, "38-42"));
-        payment.addItem(new ElectricItem("Brödrost", 150, "C"));
-        payment.addItem(new FoodItem("Bullar", 35, "2025-09-30"));
+    private void makeOrderToPayment(Payment payment) {
+        Order order = shoppingCart.makeOrder();
+        payment.setOrder(order);
+        payment.setDiscount(new PercentageDiscount(30));
     }
 
 
@@ -97,9 +93,9 @@ public class Cashier {
 
         SwishPayment swishPayment = new SwishPayment(phoneNumber);
 
-        addProductsToPayment(swishPayment);
+        makeOrderToPayment(swishPayment);
 
-        String receipt = swishPayment.processPayment(100);
+        Receipt receipt = swishPayment.processPayment();
         System.out.println(receipt);
     }
 
@@ -112,9 +108,9 @@ public class Cashier {
 
         CardPayment cardPayment = new CardPayment(cardNumber, CVV);
 
-        addProductsToPayment(cardPayment);
+        makeOrderToPayment(cardPayment);
 
-        String receipt = cardPayment.processPayment(100);
+        Receipt receipt = cardPayment.processPayment();
         System.out.println(receipt);
     }
 
@@ -125,7 +121,7 @@ public class Cashier {
 //        System.out.println("--- Skriv in antal ---");
 //        int
 
-        //shoppingCart.addItem(catalog.orderShoppingItem(itemId, 1));
+        shoppingCart.addItem(catalog.orderShoppingItem(itemId, 1));
     }
 
     private void showCatalog() {

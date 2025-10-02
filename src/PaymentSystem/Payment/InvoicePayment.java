@@ -14,9 +14,10 @@ public class InvoicePayment extends Payment {
     }
 
     @Override
-    public String processPayment(double amount) {
+    public Receipt processPayment() {
         // Build receipt
-        Receipt receipt = new Receipt.Builder()
+
+        return new Receipt.Builder()
                 .paymentMethod("INVOICE")
                 .terms(this.terms)
                 .invoiceNumber(this.invoiceNumber)
@@ -25,11 +26,6 @@ public class InvoicePayment extends Payment {
                 .total(getTotalSum())
                 .formatter(new InvoiceFormatter())
                 .build();
-
-        System.out.println(receipt);
-
-        System.out.println("Processing invoice payment. Amount:" + amount);
-        return super.processPayment(amount);
     }
 
     @Override
