@@ -14,6 +14,7 @@ public class Receipt {
     private String client; // InvoicePayment
     private List<ShoppingItem> items;
     private double total;
+    private double discountSum;
     private ReceiptFormatter formatter;
 
     public Receipt(Builder builder) {
@@ -26,7 +27,12 @@ public class Receipt {
         this.client = builder.client;
         this.items = builder.items;
         this.total = builder.total;
+        this.discountSum = builder.discountSum;
         this.formatter = builder.formatter;
+    }
+
+    public double getDiscountSum() {
+        return discountSum;
     }
 
     public String getReceiptNumber() {
@@ -81,6 +87,7 @@ public class Receipt {
         private String client;
         private List<ShoppingItem> items;
         private double total;
+        private double discountSum;
         private ReceiptFormatter formatter;
 
         public Builder paymentMethod(String paymentMethod) {
@@ -125,6 +132,11 @@ public class Receipt {
 
         public Builder total(double total) {
             this.total = total;
+            return this;
+        }
+
+        public Builder discountSum(double discountSum) {
+            this.discountSum = discountSum;
             return this;
         }
 

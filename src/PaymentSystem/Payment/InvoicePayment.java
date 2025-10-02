@@ -24,6 +24,7 @@ public class InvoicePayment extends Payment {
                 .phoneNumber(this.client)
                 .items(getShoppingItems())
                 .total(getTotalSum())
+                .discountSum(getDiscountSum())
                 .formatter(new InvoiceFormatter())
                 .build();
     }

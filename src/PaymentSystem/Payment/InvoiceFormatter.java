@@ -14,6 +14,7 @@ public class InvoiceFormatter implements ReceiptFormatter{
         sb.append(receipt.shoppingItemsToString()).append("\n");
         sb.append((String.format("%-7s %16.2fKr\n", "TOTAL: ", receipt.getTotal())));
         sb.append("==========================\n");
+        sb.append("Rabatt: ").append(receipt.getDiscountSum()).append("\n");
         sb.append(String.format("Payment method: %s\n", receipt.getPaymentMethod()));
         sb.append("Contact: ").append(receipt.getPhoneNumber()).append("\n");
 

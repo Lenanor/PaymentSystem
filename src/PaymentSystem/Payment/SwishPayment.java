@@ -20,6 +20,7 @@ public class SwishPayment extends Payment {
                 .phoneNumber(this.phoneNumber)
                 .items(getShoppingItems())
                 .total(getTotalSum())
+                .discountSum(getDiscountSum())
                 .formatter(new SwishReceiptFormatter())
                 .build();
     }
