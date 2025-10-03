@@ -8,9 +8,9 @@ public class SwishReceiptFormatter implements ReceiptFormatter {
         sb.append("----- RECEIPT -----").append("\n");
         sb.append("Receipt number: ").append(receipt.getReceiptNumber()).append("\n\n");
         sb.append(receipt.shoppingItemsToString()).append("\n");
+        sb.append(String.format("%-7s %15.2fKr\n", "Rabatt: ", receipt.getDiscountSum()));
         sb.append((String.format("%-7s %16.2fKr\n", "TOTAL: ", receipt.getTotal())));
         sb.append("==========================\n");
-        sb.append("Rabatt: ").append(receipt.getDiscountSum()).append("\n");
         sb.append(String.format("Payment method: %s\n", receipt.getPaymentMethod()));
         sb.append("Phone number: ").append(receipt.getPhoneNumber()).append("\n");
 
